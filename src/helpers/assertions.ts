@@ -1,10 +1,27 @@
 import { expect, Locator, Page } from "@playwright/test";
 
-async function expectVisible(locator: Locator, name: string, timeout = 30000) {
+async function expectVisible(locator: Locator, name: string, timeout = 10000) {
   try {
     await expect(locator.last()).toBeVisible({ timeout });
   } catch {
     throw new Error(`❌ "${name}" has not appeared on the screen`);
+  }
+}
+
+async function expectHidden(locator: Locator, name: string, timeout = 10000) {
+  try {
+    await expect(locator).toBeHidden({ timeout });
+  } catch {
+    throw new Error(`❌ "${name}" did not disappear from the screen`);
+  }
+}
+
+async function isVisible(locator: Locator, timeout = 5000) {
+  try {
+    await locator.waitFor({ state: "visible", timeout });
+    return true;
+  } catch {
+    return false;
   }
 }
 
@@ -24,4 +41,4 @@ async function navigateToURL(
   }
 }
 
-export { expectVisible, navigateToURL };
+export { expectVisible, expectHidden, isVisible, navigateToURL };

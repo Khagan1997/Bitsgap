@@ -9,7 +9,7 @@ export default defineConfig({
   testDir: "./src/tests",
   timeout: 120000,
   fullyParallel: true,
-  retries: 1,
+  retries: 0,
   reporter: [["html", { outputFolder: "playwright-report" }]],
   use: {
     baseURL: process.env.BASE_URL,
