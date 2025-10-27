@@ -14,10 +14,14 @@ async function navigateToURL(
   name: string,
   URL: string
 ) {
-  await expectVisible(locator, name);
-  await locator.click();
-  await page.waitForURL(URL);
-  await expect(page).toHaveURL(URL);
+  try {
+    await expectVisible(locator, name);
+    await locator.click();
+    await page.waitForURL(URL);
+    await expect(page).toHaveURL(URL);
+  } catch (error) {
+    throw new Error(`Navigation error on ${URL}`);
+  }
 }
 
 export { expectVisible, navigateToURL };

@@ -2,16 +2,24 @@
   "name": "bitsgap",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "type": "module",
+  "scripts": {
+    "auth:setup": "tsx auth-setup.ts",
+    "test:session": "cross-env USE_STORAGE=true npx playwright test",
+    "test:nosession": "cross-env USE_STORAGE=false npx playwright test",
+    "report": "npx playwright show-report"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.56.1",
-    "@types/node": "^24.9.1"
+    "@types/node": "^24.9.1",
+    "tsx": "^4.20.6"
   },
   "dependencies": {
+    "cross-env": "^10.1.0",
     "dotenv": "^17.2.3",
     "typescript": "^5.9.3"
   }

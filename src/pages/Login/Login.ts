@@ -1,4 +1,4 @@
-import { Page, expect } from "@playwright/test";
+import { Page } from "@playwright/test";
 import { expectVisible } from "../../helpers/assertions";
 import { loginLocators } from "./login-locators";
 import { navigateToURL } from "../../helpers/assertions";
@@ -21,9 +21,9 @@ export class Login {
 
   async login(email: string, password: string) {
     await expectVisible(this.locators.emailInput, "Email input");
-    await this.page.locator(this.locators.emailInput).fill(email);
+    await this.locators.emailInput.fill(email);
     await expectVisible(this.locators.emailInput, "Password input");
-    await this.page.locator(this.locators.passwordInput).fill(password);
+    await this.locators.passwordInput.fill(password);
     await navigateToURL(
       this.page,
       this.locators.loginBtn,

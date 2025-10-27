@@ -13,7 +13,7 @@ allure-report/
 allure-results/
 
 # Local auth/session storage
-auth/
+state.json
 
 # .env
 .env
