@@ -1,4 +1,4 @@
-import { expect, Locator } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 
 async function expectVisible(locator: Locator, name: string, timeout = 30000) {
   try {
@@ -8,4 +8,16 @@ async function expectVisible(locator: Locator, name: string, timeout = 30000) {
   }
 }
 
-export { expectVisible };
+async function navigateToURL(
+  page: Page,
+  locator: Locator,
+  name: string,
+  URL: string
+) {
+  await expectVisible(locator, name);
+  await locator.click();
+  await page.waitForURL(URL);
+  await expect(page).toHaveURL(URL);
+}
+
+export { expectVisible, navigateToURL };

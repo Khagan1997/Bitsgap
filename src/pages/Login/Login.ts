@@ -1,6 +1,7 @@
 import { Page, expect } from "@playwright/test";
 import { expectVisible } from "../../helpers/assertions";
 import { loginLocators } from "./login-locators";
+import { navigateToURL } from "../../helpers/assertions";
 
 export class Login {
   private locators;
@@ -10,9 +11,24 @@ export class Login {
   }
 
   async redirectToLoginPage() {
-    await expectVisible(this.locators.loginLink, "Login link");
-    await this.locators.loginLink.click();
-    await this.page.waitForURL(process.env.LOGIN_PAGE_URL!);
-    await expect(this.page).toHaveURL(process.env.LOGIN_PAGE_URL!);
+    await navigateToURL(
+      this.page,
+      this.locators.loginLink,
+      "Login link",
+      process.env.LOGIN_PAGE_URL!
+    );
+  }
+
+  async login(email: string, password: string) {
+    await expectVisible(this.locators.emailInput, "Email input");
+    await this.page.locator(this.locators.emailInput).fill(email);
+    await expectVisible(this.locators.emailInput, "Password input");
+    await this.page.locator(this.locators.passwordInput).fill(password);
+    await navigateToURL(
+      this.page,
+      this.locators.loginBtn,
+      "Login button",
+      process.env.BOT_PAGE_URL!
+    );
   }
 }

@@ -10,7 +10,7 @@ export default defineConfig({
   retries: 1,
   reporter: [["html", { outputFolder: "playwright-report" }]],
   use: {
-    baseURL: process.env.APP_URL,
+    baseURL: process.env.BASE_URL,
     headless: true,
     trace: "on-first-retry",
     screenshot: "only-on-failure",
