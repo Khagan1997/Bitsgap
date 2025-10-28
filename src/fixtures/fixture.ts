@@ -1,11 +1,13 @@
 import { test as base } from "@playwright/test";
 import { Login } from "../pages/Login/Login";
 import { Bot } from "../pages/Bot/Bot";
+import { Trading } from "../pages/Trading/Trading";
 import * as fs from "fs";
 
 type Fixtures = {
   authenticatedPage: Login;
   botPage: Bot;
+  tradingPage: Trading;
 };
 
 export const test = base.extend<Fixtures>({
@@ -32,5 +34,9 @@ export const test = base.extend<Fixtures>({
   botPage: async ({ page }, use) => {
     const botPage = new Bot(page);
     await use(botPage);
+  },
+  tradingPage: async ({ page }, use) => {
+    const tradingPage = new Trading(page);
+    await use(tradingPage);
   },
 });

@@ -26,15 +26,11 @@ export class Bot {
     await expectVisible(this.locators.demoToggle, "Demo toggle button");
   }
 
-  async enableDemoMode() {
+  async switchToDemoMode() {
     const isChecked = await this.locators.demoToggle.isChecked();
     if (!isChecked) {
       await this.locators.demoToggle.click();
     }
     await expectVisible(this.locators.demoActiveLabel, "Demo active label");
-  }
-
-  async checkActiveDemoMode(): Promise<boolean> {
-    return this.locators.demoActiveLabel.isVisible();
   }
 }

@@ -7,7 +7,7 @@ const useStorage = process.env.USE_STORAGE === "true";
 
 export default defineConfig({
   testDir: "./src/tests",
-  timeout: 120000,
+  timeout: 60000,
   fullyParallel: true,
   retries: 0,
   reporter: [["html", { outputFolder: "playwright-report" }]],
